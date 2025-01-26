@@ -1,4 +1,4 @@
-package com.moneytransfer;
+package com.moneytransfer.main;
 
 
 import org.openqa.selenium.WebDriver;
