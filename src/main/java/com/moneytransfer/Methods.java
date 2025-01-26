@@ -1,8 +1,10 @@
 package com.moneytransfer;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -60,6 +62,45 @@ public class Methods {
         // Seçimi yap
         select.selectByIndex(randomIndex);
     }
+
+    public void clickAndTypeWithJS(By locator, String text) {
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+
+            // JavaScript ile tıklama
+            js.executeScript("arguments[0].click();", element);
+
+            // JavaScript ile yazma
+            js.executeScript("arguments[0].value=arguments[1];", element, text);
+
+            // Olası bir 'onchange' veya 'oninput' olayını tetikle
+            js.executeScript("arguments[0].dispatchEvent(new Event('change'));", element);
+
+        } catch (Exception e) {
+            System.err.println("Error in clickAndTypeWithJS method: " + e.getMessage());
+        }
+    }
+
+    public void scrollAndClick(By locator) {
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+
+            // Elemente kaydır
+            js.executeScript("arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});", element);
+
+            // Elemente tıkla
+            js.executeScript("arguments[0].click();", element);
+        } catch (Exception e) {
+            System.err.println("Error in scrollAndClick method: " + e.getMessage());
+        }
+    }
+
 }
 
 

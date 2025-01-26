@@ -39,21 +39,26 @@ public class AddMoneyTest extends LoginTest { // LoginTest'ten miras alıyoruz
         // Ödeme bilgilerini gir
         methods.sendKeys(By.xpath("(//div[@class='css-175oi2r r-13qz1uu']//input)[1]"), "1234 1234 1234 1234");
         methods.waitBySeconds(2);
-        methods.sendKeys(By.xpath("(//div[@class='css-175oi2r r-13qz1uu']//input)[2]"), "Ayşegül");
+        methods.clickElement(By.xpath("(//div[@class='css-175oi2r r-13qz1uu']//input)[2]"));
         methods.waitBySeconds(2);
-        methods.sendKeys(By.xpath("(//div[@class='css-175oi2r r-13qz1uu']//input)[3]"), "1026");
+        methods.clickAndTypeWithJS(By.xpath("(//div[@class='css-175oi2r r-13qz1uu']//input)[2]"), "Ayşegül Test");
         methods.waitBySeconds(2);
-        methods.sendKeys(By.xpath("(//div[@class='css-175oi2r r-13qz1uu']//input)[4]"), "110");
+        methods.clickAndTypeWithJS(By.xpath("(//div[@class='css-175oi2r r-13qz1uu']//input)[3]"), "10/26");
+        methods.waitBySeconds(2);
+        methods.clickAndTypeWithJS(By.xpath("(//div[@class='css-175oi2r r-13qz1uu']//input)[4]"), "110");
+        methods.waitBySeconds(2);
+        methods.clickAndTypeWithJS(By.xpath("(//div[@class='css-175oi2r r-13qz1uu']//input)[5]"), "1000");
         methods.waitBySeconds(2);
 
 
         // "Add" butonuna tıkla
-        methods.clickElement(By.xpath("(//div[@class='css-175oi2r r-1i6wzkk r-lrvibr r-1loqt21 r-1otgn73 r-1awozwy r-169ebfh r-z2wwpe r-h3s6tt r-1777fci r-tsynxw r-13qz1uu']"));
-        methods.waitBySeconds(2);
+        methods.scrollAndClick(By.xpath("//div[@class='css-175oi2r r-1i6wzkk r-lrvibr r-1loqt21 r-1otgn73 r-1awozwy r-169ebfh r-z2wwpe r-h3s6tt r-1777fci r-tsynxw r-13qz1uu']"));
+        methods.waitBySeconds(10);
 
         // Bakiye bilgisini al ve kontrol et
         WebElement balanceElement = driver.findElement(By.xpath("(//div[@class='css-146c3p1 r-1ozpqpt r-yv33h5 r-1b43r93'])[3]"));
         String updatedBalance = balanceElement.getText();
+        methods.waitBySeconds(3);
 
 
     }
